@@ -33,7 +33,11 @@
     "it": "0.0.5"
   },
   "keywords": [
-    "gruntplugin"
+    "gruntplugin",
+    "unit-testing",
+    "test",
+    "tests",
+    "comb"
   ],
   "dependencies": {
     "comb": "~0.1.91"
