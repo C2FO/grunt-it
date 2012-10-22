@@ -15,12 +15,12 @@ module.exports = function (grunt) {
     // TASKS
     // ==========================================================================
 
-    grunt.registerTask('it', 'Execute it tests', function () {
-        var config = grunt.config.get('it'),
-            dirs = config.dirs || '/',
-            reporter = config.reporter || 'dotmatrix';
-        grunt.log.write(grunt.helper('it'));
-    });
+    // grunt.registerTask('it', 'Execute it tests', function () {
+    //     var config = grunt.config.get('it'),
+    //         dirs = config.dirs || '/',
+    //         reporter = config.reporter || 'dotmatrix';
+    //     grunt.log.write(grunt.helper('it'));
+    // });
 
     grunt.registerMultiTask('it', 'execute it unit tests', function () {
         var it = require('it'),
@@ -63,8 +63,8 @@ module.exports = function (grunt) {
     // HELPERS
     // ==========================================================================
 
-    grunt.registerHelper('it', function () {
-        return 'it!!!';
-    });
+    // grunt.registerHelper('it', function () {
+    //     return 'it!!!';
+    // });
 
 };
