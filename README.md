@@ -15,7 +15,18 @@ grunt.loadNpmTasks('grunt-it');
 [getting_started]: https://github.com/gruntjs/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-_(Coming soon)_
+
+Add the following to your grunt.js file.
+
+    it : {
+        all : {
+            src : 'test/**/*.test.js',
+            options : {
+                timeout : 3000, // not fully supported yet
+                reporter : 'dotmatrix'
+            }
+        }
+    }
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
