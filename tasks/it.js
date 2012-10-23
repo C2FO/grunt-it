@@ -36,6 +36,9 @@ module.exports = function (grunt) {
             options = this.data.options || {},
             reporter = options.reporter || 'dotmatrix';
 
+        // set the process environment
+        process.env.NODE_ENV = options.environment || 'test';
+
         var done = this.async();
         return comb.serial(comb.array.compact(paths.map(function (f) {
             var suite = require(f);
