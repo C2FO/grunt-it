@@ -23,51 +23,52 @@ module.exports = function (grunt) {
     // });
 
     grunt.registerMultiTask('it', 'execute it unit tests', function () {
-        var it = require('it'),
-            comb = require('comb'),
-            config = grunt.config.get('it'),
-            files = config.files,
-            path = require('path');
+            var it = require('it'),
+                comb = require('comb'),
+                config = grunt.config.get('it'),
+                files = config.files,
+                path = require('path'),
+                Module = require("module").Module,
+                _require = Module.prototype.require;
 
-        var filepaths = grunt.file.expandFiles(this.file.src);
-        grunt.file.clearRequireCache(filepaths);
+            //ensure then we call get the same it
+            Module.prototype.require = function require(mod) {
+                if (mod === "it") {
+                    return it;
+                } else {
+                    return _require.apply(this, arguments);
+                }
+            };
 
-        var paths = filepaths.map(path.resolve),
-            options = this.data.options || {},
-            reporter = options.reporter || 'dotmatrix';
+            var filepaths = grunt.file.expandFiles(this.file.src);
+            grunt.file.clearRequireCache(filepaths);
 
-        // set the process environment
-        process.env.NODE_ENV = options.environment || 'test';
+            var paths = filepaths.map(path.resolve),
+                options = this.data.options || {},
+                reporter = options.reporter || 'dotmatrix';
 
-        var done = this.async();
-        return comb.serial(comb.array.compact(paths.map(function (f) {
-            var suite = require(f);
-            suite.reporter = reporter;
-            return suite.run ? suite.run.bind(suite) : null;
-        }))).then(function (results) {
-            var its = {};
-            var errors = 0;
-            results.forEach(function (summary) {
-                comb(summary).forEach(function (testData) {
-                    comb(testData.summaries).forEach(function (summaryData) {
-                        if (summaryData.status === 'failed') {
-                            errors++;
-                        }
-                    });
-                });
-                comb.merge(its, summary);
+            // set the process environment
+            process.env.NODE_ENV = options.environment || 'test';
+
+            var done = this.async();
+            it.reporter(reporter);
+            paths.forEach(function (f) {
+                require(f);
             });
-            it.printSummary(its);
-            done(0 === errors);
-        });
-    });
+            it.run().then(function (results) {
+                console.log(results);
+                done(0 === results);
+            });
+        }
+    );
 
-    // ==========================================================================
-    // HELPERS
-    // ==========================================================================
+// ==========================================================================
+// HELPERS
+// ==========================================================================
 
-    // grunt.registerHelper('it', function () {
-    //     return 'it!!!';
-    // });
+// grunt.registerHelper('it', function () {
+//     return 'it!!!';
+// });
 
-};
+}
+;
