@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "grunt": "~0.3.17",
-    "it": "0.0.5"
+    "it": "0.1.0"
   },
   "keywords": [
     "gruntplugin",
@@ -40,6 +40,6 @@
     "comb"
   ],
   "dependencies": {
-    "comb": "~0.1.91"
+    "comb": "~0.2.1"
   }
 }
