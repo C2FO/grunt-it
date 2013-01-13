@@ -56,7 +56,6 @@ module.exports = function (grunt) {
                 require(f);
             });
             it.run().then(function (results) {
-                console.log(results);
                 done(0 === results);
             });
         }
