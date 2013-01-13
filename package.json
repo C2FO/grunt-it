@@ -1,7 +1,7 @@
 {
   "name": "grunt-it",
   "description": "A grunt task for executing tests written with the it test framework",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/nicknisi/grunt-it",
   "author": {
     "name": "Nick Nisi",
