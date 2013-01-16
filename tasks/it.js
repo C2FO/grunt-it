@@ -52,7 +52,6 @@ module.exports = function (grunt) {
             var done = this.async();
             it.reporter(reporter);
             paths.forEach(function (f) {
-                console.log("loading " + f);
                 require(f);
             });
             it.run().then(function (results) {
