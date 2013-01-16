@@ -42,7 +42,6 @@ module.exports = function (grunt) {
 
             var filepaths = grunt.file.expandFiles(this.file.src);
             grunt.file.clearRequireCache(filepaths);
-
             var paths = filepaths.map(path.resolve),
                 options = this.data.options || {},
                 reporter = options.reporter || 'dotmatrix';
@@ -53,6 +52,7 @@ module.exports = function (grunt) {
             var done = this.async();
             it.reporter(reporter);
             paths.forEach(function (f) {
+                console.log("loading " + f);
                 require(f);
             });
             it.run().then(function (results) {
