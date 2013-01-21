@@ -24,11 +24,9 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('it', 'execute it unit tests', function () {
             var it = require('it'),
-                comb = require('comb'),
-                config = grunt.config.get('it'),
-                files = config.files,
                 path = require('path'),
                 Module = require("module").Module,
+                oToString = Object.prototype.toString,
                 _require = Module.prototype.require;
 
             //ensure then we call get the same it
@@ -55,7 +53,12 @@ module.exports = function (grunt) {
                 require(f);
             });
             it.run().then(function (results) {
-                done(0 === results);
+                if (oToString(results) === "[object Number]") {
+                    done(0 === results);
+                }else {
+                    console.log(results);
+                    done(0 === results.errorCount);
+                }
             });
         }
     );
