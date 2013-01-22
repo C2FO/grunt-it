@@ -56,7 +56,6 @@ module.exports = function (grunt) {
                 if (oToString(results) === "[object Number]") {
                     done(0 === results);
                 }else {
-                    console.log(results);
                     done(0 === results.errorCount);
                 }
             });
