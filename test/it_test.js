@@ -26,7 +26,7 @@ exports['it'] = {
         // setup here
         done();
     },
-    'helper': function (test) {
+    'default_options': function (test) {
         test.expect(1);
         // tests here
         test.equal(grunt.helper('it'), 'it!!!', 'should return the correct value.');
