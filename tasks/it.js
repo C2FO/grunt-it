@@ -24,6 +24,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('it', 'execute it unit tests', function () {
             var it = require('it'),
+                glob = require("glob"),
                 path = require('path'),
                 Module = require("module").Module,
                 oToString = Object.prototype.toString,
@@ -38,7 +39,7 @@ module.exports = function (grunt) {
                 }
             };
 
-            var filepaths = grunt.file.expandFiles(this.file.src);
+            var filepaths = glob.sync(this.file.src);
             grunt.file.clearRequireCache(filepaths);
             var paths = filepaths.map(path.resolve),
                 options = this.data.options || {},
