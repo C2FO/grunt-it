@@ -1,42 +1,46 @@
 {
-    "name": "grunt-it",
-    "description": "A grunt task for executing tests written with the it test framework",
-    "version": "0.2.4",
-    "homepage": "https://github.com/nicknisi/grunt-it",
-    "author": {
-        "name": "Nick Nisi",
-        "email": "nick@nisi.org"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/nicknisi/grunt-it.git"
-    },
-    "bugs": {
-        "url": "https://github.com/nicknisi/grunt-it/issues"
-    },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "https://github.com/nicknisi/grunt-it/blob/master/LICENSE-MIT"
-        }
-    ],
-    "main": "grunt.js",
-    "bin": "bin/grunt-it",
-    "engines": {
-        "node": "*"
-    },
-    "scripts": {
-        "test": "grunt test"
-    },
-    "devDependencies": {
-        "grunt": "~0.3.17",
-        "it": "~0.2.0"
-    },
-    "keywords": [
-        "gruntplugin",
-        "unit-testing",
-        "test",
-        "tests",
-        "it"
-    ]
+  "name": "grunt-it",
+  "description": "A grunt task for executing tests written with the it test framework",
+  "version": "0.2.4",
+  "homepage": "https://github.com/nicknisi/grunt-it",
+  "author": {
+    "name": "Nick Nisi",
+    "email": "nick@nisi.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nicknisi/grunt-it.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nicknisi/grunt-it/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/nicknisi/grunt-it/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "grunt.js",
+  "bin": "bin/grunt-it",
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17",
+    "it": "~0.2.0"
+  },
+  "keywords": [
+    "gruntplugin",
+    "unit-testing",
+    "test",
+    "tests",
+    "it"
+  ],
+  "dependencies": {
+    "glob": "~3.1.21"
+  }
 }
+
