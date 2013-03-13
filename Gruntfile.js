@@ -7,15 +7,8 @@ module.exports = function (grunt) {
             dirs : ['tests'],
             reporter : 'dotmatrix'
         },
-        test: {
-            files: ['test/**/*.js']
-        },
-        lint: {
-            files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
-        },
-        watch: {
-            files: '<config:lint.files>',
-            tasks: 'default'
+        nodeunit: {
+            tests: ['test/**/*.js']
         },
         jshint: {
             options: {
@@ -40,6 +33,9 @@ module.exports = function (grunt) {
     grunt.loadTasks('tasks');
 
     // Default task.
-    grunt.registerTask('default', 'lint test');
+    grunt.registerTask('default', ['jshint', 'test']);
+    grunt.registerTask('test', ['nodeunit']);
 
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 };
