@@ -27,8 +27,10 @@ module.exports = function (grunt) {
             };
 
             var filepaths = this.filesSrc;
-            var paths = filepaths.map(path.resolve),
-                options = this.data.options || {},
+            var paths = filepaths.map(function (p) {
+                return path.resolve(p);
+            });
+            var options = this.data.options || {},
                 reporter = options.reporter || 'dotmatrix';
 
             // set the process environment
@@ -42,7 +44,7 @@ module.exports = function (grunt) {
             it.run().then(function (results) {
                 if (oToString(results) === "[object Number]") {
                     done(0 === results);
-                }else {
+                } else {
                     done(0 === results.errorCount);
                 }
             });
