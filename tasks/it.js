@@ -45,7 +45,9 @@ module.exports = function (grunt) {
                 if (oToString(results) === "[object Number]") {
                     done(0 === results);
                 } else {
-                    done(0 === results.errorCount);
+                    done(results.errorCount === 0 &&
+                        results.totalCount === (results.successCount + results.skippedCount) &&
+                        results.pendingCount === 0);
                 }
             });
         }
