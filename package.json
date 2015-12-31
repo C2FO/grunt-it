@@ -1,7 +1,7 @@
 {
   "name": "grunt-it",
   "description": "A grunt task for executing tests written with the it test framework",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/nicknisi/grunt-it",
   "author": {
     "name": "Nick Nisi",
@@ -30,12 +30,12 @@
   },
   "devDependencies": {
     "grunt": "~0.4.0",
-    "it": "~1.0.1",
+    "it": "~1.1.0",
     "grunt-contrib-jshint": "~0.2.0",
     "grunt-contrib-nodeunit": "~0.1.2"
   },
   "peerDependencies": {
-    "it": "~1.0.0"
+    "it": "^1.0.0"
   },
   "keywords": [
     "gruntplugin",
