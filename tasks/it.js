@@ -42,13 +42,24 @@ module.exports = function (grunt) {
                 require(f);
             });
             it.run().then(function (results) {
-                if (oToString(results) === "[object Number]") {
-                    done(0 === results);
-                } else {
-                    done(results.errorCount === 0 &&
-                        results.totalCount === (results.successCount + results.skippedCount) &&
-                        results.pendingCount === 0);
+                var results = results || {};
+
+                try {
+                    if (oToString(results) === "[object Number]") {
+                        done(0 === results);
+                    } else {
+                        var noErrors = results.errorCount === 0,
+                            noPending = results.pendingCount === 0,
+                            allTestsRan = results.totalCount === (results.successCount + results.skippedCount);
+
+                        done(noErrors && noPending && allTestsRan);
+                    }
+                } catch (error) {
+                    console.error(error);
+                    done(error);
                 }
+            }, function (error) {
+                done(error);
             });
         }
     );
