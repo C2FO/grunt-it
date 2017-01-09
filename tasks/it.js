@@ -42,24 +42,23 @@ module.exports = function (grunt) {
                 require(f);
             });
             it.run().then(function (results) {
-                var results = results || {};
+                // support "no tests found"
+                if (results === undefined) {
+                    return done(true);
+                }
 
                 try {
                     if (oToString(results) === "[object Number]") {
                         done(0 === results);
                     } else {
-                        var noErrors = results.errorCount === 0,
-                            noPending = results.pendingCount === 0,
-                            allTestsRan = results.totalCount === (results.successCount + results.skippedCount);
-
-                        done(noErrors && noPending && allTestsRan);
+                        done(results.errorCount === 0 &&
+                            results.totalCount === (results.successCount + results.skippedCount) &&
+                            results.pendingCount === 0);
                     }
                 } catch (error) {
                     console.error(error);
-                    done(error);
+                    done(false);
                 }
-            }, function (error) {
-                done(error);
             });
         }
     );
