@@ -42,12 +42,22 @@ module.exports = function (grunt) {
                 require(f);
             });
             it.run().then(function (results) {
-                if (oToString(results) === "[object Number]") {
-                    done(0 === results);
-                } else {
-                    done(results.errorCount === 0 &&
-                        results.totalCount === (results.successCount + results.skippedCount) &&
-                        results.pendingCount === 0);
+                // support "no tests found"
+                if (results === undefined) {
+                    return done(true);
+                }
+
+                try {
+                    if (oToString(results) === "[object Number]") {
+                        done(0 === results);
+                    } else {
+                        done(results.errorCount === 0 &&
+                            results.totalCount === (results.successCount + results.skippedCount) &&
+                            results.pendingCount === 0);
+                    }
+                } catch (error) {
+                    console.error(error);
+                    done(false);
                 }
             });
         }
